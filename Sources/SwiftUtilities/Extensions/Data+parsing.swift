@@ -24,6 +24,10 @@ public extension Data {
             ptr.load(as: UInt16.self)
         })
     }
+    
+    var hexString: String {
+        return map { String(format: "%02X", $0) }.joined(separator: " ")
+    }
 }
 
 public extension Int {
