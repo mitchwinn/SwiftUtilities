@@ -24,6 +24,20 @@ public extension Data {
             ptr.load(as: UInt16.self)
         })
     }
+
+    func parseUnsignedValue32(offset: Int) -> Int {
+        let bytes = Data(self[offset...offset + 3])
+        return Int(bytes.withUnsafeBytes { ptr in
+            ptr.load(as: UInt32.self)
+        })
+    }
+
+    func parseSignedValue32(offset: Int) -> Int {
+        let bytes = Data(self[offset...offset + 3])
+        return Int(bytes.withUnsafeBytes { ptr in
+            ptr.load(as: Int32.self)
+        })
+    }
     
     var hexString: String {
         return map { String(format: "%02X", $0) }.joined(separator: " ")
